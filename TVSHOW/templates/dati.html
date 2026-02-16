@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="sovs">
+<h1>{{ show.name }}</h1>
+<p>
+    <b>Genres:</b>
+    {{ show.genres | join(", ") }}
+</p>
+<p>
+    <b>The show's summary:</b>
+</p>
+<div>
+    {{ show.summary | safe }}
+</div>
+<br>
+<div class="buttons">
+    <form action="/pievienot" method="post">
+        <input type="hidden" name="show_name" value="{{ show.name }}">
+        <input type="hidden" name="genre" value="{{ genre }}">
+        <button class="wishlist" type="submit">Add to my wishlist</button>
+    </form>
+    <form action="/another" method="post">
+        <input type="hidden" name="genre" value="{{ genre }}">
+        <input type="hidden" name="name" value="{{ name }}">
+        <button class="wishlist" type="submit">Another</button>
+    </form>
+</div>
+<br>
+</div>
+<br>
+<a href="/izvele">Choose another genre</a>
+<a href="/saraksts">See my wishlist</a>
+
+{% endblock %}

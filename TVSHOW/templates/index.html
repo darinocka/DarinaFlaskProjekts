@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>ShowMatch</h1>
+<p>
+   This website is designed to find TV shows that you may like and to provide you with the opportunity to create a TV-show wishlist.
+</p>
+<form class="varda_ievade" action="/dati" method="post">
+    <input autocomplete="off" autofocus name="name" placeholder="Name" type="text">
+    <button type="submit">Continue</button>
+</form>
+{% endblock %}

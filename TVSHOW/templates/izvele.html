@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Hi, {{name}}! Choose genre and press find.</h1>
+<form class="zanri" action="/izvele" method="post">
+    <input type="hidden" name="name" value="{{ name }}">
+    {% for genre in genres %}
+        <input name="genre" type="radio" value="{{ genre }}"> {{ genre }}
+    {% endfor %}
+    <br>
+    <button type="submit">Find</button>
+</form>
+<a href="/saraksts">See my wishlist</a>
+{% endblock %}

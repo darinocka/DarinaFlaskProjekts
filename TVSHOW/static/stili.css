@@ -1,0 +1,121 @@
+body {
+    background-color: #FFCE99;
+    color:#562F00;
+    font-family: Georgia, serif;
+
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h2 {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+p {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a {
+    display: inline-block;
+    padding: 10px 20px;
+    
+    background-color: #FF9644;
+    color: #562F00;
+    
+    border: 2px solid #562F00;
+    border-radius: 6px;
+    
+    text-decoration: none;
+    
+    font-weight: bold;
+    text-align: center;
+    font-family: Georgia, serif;
+}
+
+.varda_ievade {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button{
+    background-color: #FF9644;
+    color: #562F00;
+    border: 2px solid #562F00;
+    border-radius: 6px;
+    text-decoration: none;
+    
+    font-weight: bold;
+    text-align: center;
+    font-size: 20px;
+    font-family: Georgia, serif;
+}
+
+.zanri{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 20px;
+}
+
+.error {
+    font-size: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+
+}
+
+.sovs{
+    font-size: 25px;
+    margin: 0 auto;
+}
+
+.wishlist{
+    display: block;
+    margin: 20px auto;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.show_list{
+    list-style-type: disc;
+    padding-left: 20px;
+    width: 400px;
+}
+
+.show_item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.show_text{
+    flex-grow: 1;
+}
+
+.show_name{
+    font-weight: bold;
+}
+
+.delete_button{
+    margin-left: 20px;
+    text-decoration: none;
+}

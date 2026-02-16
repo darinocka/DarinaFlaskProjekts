@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<h1>My Wishlist</h1>
+
+{% if shows %}
+    <ul class="show_list">
+    {% for show in shows %}
+        <li class = "show_item">
+            <span class="show_text">
+            <span class="show_name">{{ show[1] }}</span> ({{ show[2] }})
+            </span>
+            <a href="/delete/{{ show[0] }}" class="delete_button">🗑️</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Your list is empty.</p>
+{% endif %}
+
+<br>
+<a href="/izvele">Back to filter</a>
+
+{% endblock %}
