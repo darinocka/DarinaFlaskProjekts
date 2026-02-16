@@ -1,7 +1,7 @@
 import sqlite3
 
 def create_database():
-    conn= sqlite3.connect("./projekts/datubaze.db")
+    conn= sqlite3.connect("datubaze.db")
     conn.execute("""CREATE TABLE IF NOT EXISTS lietotaji(
                  id INTEGER PRIMARY KEY,
                  genre TEXT,
@@ -11,4 +11,5 @@ def create_database():
     conn.close()
 
 if __name__ == "__main__":
+
     create_database()
