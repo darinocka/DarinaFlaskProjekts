@@ -9,19 +9,20 @@ app = Flask(__name__)
 genres = ["Action", "Adult", "Adventure", "Anime", "Children", "Comedy", "Crime", "DIY", "Drama", "Espionage", "Family", "Fantasy", "Food", "History",
 "Horror", "Legal", "Medical", "Music", "Mystery", "Nature", "Romance", "Science-Fiction", "Sports", "Supernatural", "Thriller", "Travel", "War", "Western"]
 
+#api iegūšana
 def get_tv(x):
     response = requests.get("https://api.tvmaze.com/shows")
     if response.status_code != 200:
         return None
     show = response.json()
-    filtered = [show for show in show if x in show["genres"]]
+    filtered = [show for show in show if x in show["genres"]] #Atrod šovu kuram vismaz viens žanrs atbils izvēlei
     if not filtered:
         return None
     return random.choice(filtered)
 
 @app.route("/")
 def index():
-    return render_template("index.html", genres=genres)
+    return render_template("index.html")
 
 @app.route("/dati", methods=["POST"])
 def dati():
@@ -52,6 +53,7 @@ def izvele():
 
     return render_template("dati.html", name=name, show=show, genre=genre)
 
+#šovu pievienošana tabulai
 @app.route("/pievienot", methods=["POST"])
 def pievienot():
     show_name = request.form.get("show_name")
@@ -68,6 +70,7 @@ def pievienot():
 
     return redirect("/saraksts")
 
+#cita šova meklēšana bez nepieciešamības mainīt izvēli (žanru)
 @app.route("/another", methods=["POST"])
 def another():
     genre = request.form.get("genre")
@@ -93,7 +96,7 @@ def saraksts():
 
     return render_template("saraksts.html", shows=rows)
 
-
+#Šovu izdzēšana no saraksta
 @app.route("/delete/<int:show_id>")
 def delete_show(show_id):
     conn = sqlite3.connect("./projekts/datubaze.db")
@@ -104,18 +107,20 @@ def delete_show(show_id):
 
     return redirect("/saraksts")
 
-
+#Lapa, ko parāda, ja kautkā trūks vai api atbilde=200
 @app.route("/error")
 def error():
     return render_template("error.html")
 
+#Attīra datubāzi, ja serveris apstājas. Ideja bija tāda, ka nākamajam lietotājam būs tukš saraksts, lai varētu veidot pilnīgi savu sarakstu
 def clear_database():
     conn = sqlite3.connect("./projekts/datubaze.db")
     cursor = conn.cursor()
     cursor.execute("DELETE FROM lietotaji")
     conn.commit()
     conn.close()
-atexit.register(clear_database)
+atexit.register(clear_database) #atexit ļauj reģistrēt funkcijas, kuras automātiski tiks izpildītas, kad programma beigs darbu
 
 if __name__ == "__main__":
+
     app.run(debug=True)
