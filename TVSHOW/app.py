@@ -62,7 +62,7 @@ def pievienot():
     if not show_name or not genre:
         return render_template("error.html")
 
-    conn = sqlite3.connect("./projekts/datubaze.db")
+    conn = sqlite3.connect("datubaze.db")
     cursor = conn.cursor()
     cursor.execute("INSERT INTO lietotaji (genre, show) VALUES (?, ?)", (genre, show_name))
     conn.commit()
@@ -88,7 +88,7 @@ def another():
 
 @app.route("/saraksts")
 def saraksts():
-    conn = sqlite3.connect("./projekts/datubaze.db")
+    conn = sqlite3.connect("datubaze.db")
     cursor = conn.cursor()
     cursor.execute("SELECT id, show, genre FROM lietotaji")
     rows = cursor.fetchall()
@@ -99,7 +99,7 @@ def saraksts():
 #Šovu izdzēšana no saraksta
 @app.route("/delete/<int:show_id>")
 def delete_show(show_id):
-    conn = sqlite3.connect("./projekts/datubaze.db")
+    conn = sqlite3.connect("datubaze.db")
     cursor = conn.cursor()
     cursor.execute("DELETE FROM lietotaji WHERE id = ?", (show_id,))
     conn.commit()
@@ -114,7 +114,7 @@ def error():
 
 #Attīra datubāzi, ja serveris apstājas. Ideja bija tāda, ka nākamajam lietotājam būs tukš saraksts, lai varētu veidot pilnīgi savu sarakstu
 def clear_database():
-    conn = sqlite3.connect("./projekts/datubaze.db")
+    conn = sqlite3.connect("datubaze.db")
     cursor = conn.cursor()
     cursor.execute("DELETE FROM lietotaji")
     conn.commit()
@@ -124,3 +124,4 @@ atexit.register(clear_database) #atexit ļauj reģistrēt funkcijas, kuras autom
 if __name__ == "__main__":
 
     app.run(debug=True)
+
