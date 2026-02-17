@@ -35,12 +35,14 @@ def dati():
 @app.route("/izvele", methods=["POST", "GET"])
 def izvele():
     if request.method == "GET":
-        return render_template("izvele.html", name="", genres=genres)
+        name = request.args.get("name", "")
+        return render_template("izvele.html", name=name, genres=genres)
     
+  
     name = request.form.get("name")
     genre = request.form.get("genre")
 
-    if not genre:
+    if not name or not genre:
         return render_template("error.html")
 
     if genre not in genres:
@@ -50,7 +52,7 @@ def izvele():
 
     if not show:
         return render_template("error.html")
-
+        
     return render_template("dati.html", name=name, show=show, genre=genre)
 
 #šovu pievienošana tabulai
@@ -124,4 +126,5 @@ atexit.register(clear_database) #atexit ļauj reģistrēt funkcijas, kuras autom
 if __name__ == "__main__":
 
     app.run(debug=True)
+
 
